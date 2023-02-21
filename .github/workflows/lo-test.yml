@@ -249,12 +249,9 @@ jobs:
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./assets/*
-          tag: ${{env.strDate}}
-          file_glob: true
-          overwrite: true
-          release_name: ${{env.strDate}} 自动发布
+          name: OpenWrt_assets
+          path: ./assets/*
+         
 
   generate_firmware:
     needs: build_packages
@@ -311,9 +308,5 @@ jobs:
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./assets/*
-          tag: ${{env.strDate}}
-          file_glob: true
-          overwrite: true
-          release_name: ${{env.strDate}} 自动发布
+          name: OpenWrt_assets
+          path: ./assets/*
