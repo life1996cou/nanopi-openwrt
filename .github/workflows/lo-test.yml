@@ -169,7 +169,7 @@ jobs:
           sleep 60
           sudo umount lede
           sudo losetup -d $LOOP_DEVICE
-          export AUTH="Authorization: token ${{ secrets.SEC_TOKEN }}"
+          export AUTH="Authorization: token ${{ secrets.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 }}"
           export cache_path='github.com/repos/stupidloud/sshactions/releases'
           export cache_repo_id='39020554'
           #zstdmt -c --adapt --long lede.img | parallel --wc --block 1.99G --pipe \
