@@ -6,7 +6,7 @@ on:
     inputs:
       device:
         description: 'select device to build'
-        default: 'r2s'
+        default: 'x86'
         required: false
       branch:
         description: 'seleclt openwrt branch'
@@ -169,7 +169,7 @@ jobs:
           sleep 60
           sudo umount lede
           sudo losetup -d $LOOP_DEVICE
-          export AUTH="Authorization: token ${{ secrets.GITHUB_TOKEN }}"
+          export AUTH="Authorization: token ${{ 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 }}"
           export cache_path='github.com/repos/stupidloud/sshactions/releases'
           export cache_repo_id='39020554'
           #zstdmt -c --adapt --long lede.img | parallel --wc --block 1.99G --pipe \
@@ -247,10 +247,14 @@ jobs:
           echo "strDevice=$(echo $DEVICE | awk '{print toupper($0)}')" >> $GITHUB_ENV
 
       - name: Upload release asset
-        uses: actions/upload-artifact@v3
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: OpenWrt_asset
-          path: ./asset
+          repo_token: ${{ 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 }}
+          file: ./release/*
+          tag: ${{env.strDate}}
+          file_glob: true
+          overwrite: true
+          release_name: ${{env.strDate}} 自动发布
 
   generate_firmware:
     needs: build_packages
@@ -305,7 +309,11 @@ jobs:
           gzip -dc $DEVICE-with-docker.img.gz | md5sum | sed "s/-/$DEVICE-with-docker.img/" > $DEVICE-with-docker.img.md5
 
       - name: Upload release asset
-        uses: actions/upload-artifact@v3
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: OpenWrt_asset
-          path: ./asset
+          repo_token: ${{ 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 }}
+          file: ./release/*
+          tag: ${{env.strDate}}
+          file_glob: true
+          overwrite: true
+          release_name: ${{env.strDate}} 自动发布
