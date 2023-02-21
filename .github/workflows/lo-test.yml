@@ -250,7 +250,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: OpenWrt_asset
-          path: ./asset/
+          path: ./asset
 
   generate_firmware:
     needs: build_packages
@@ -308,4 +308,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: OpenWrt_asset
-          path: ./asset/
+          path: ./asset
