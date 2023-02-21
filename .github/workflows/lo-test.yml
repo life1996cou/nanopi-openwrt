@@ -169,7 +169,7 @@ jobs:
           sleep 60
           sudo umount lede
           sudo losetup -d $LOOP_DEVICE
-          export AUTH="Authorization: token ${{ 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 }}"
+          export AUTH="Authorization: token ${{ secrets.GITHUB_TOKEN }}"
           export cache_path='github.com/repos/stupidloud/sshactions/releases'
           export cache_repo_id='39020554'
           #zstdmt -c --adapt --long lede.img | parallel --wc --block 1.99G --pipe \
@@ -249,7 +249,7 @@ jobs:
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ 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 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./release/*
           tag: ${{env.strDate}}
           file_glob: true
@@ -311,7 +311,7 @@ jobs:
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ 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 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./release/*
           tag: ${{env.strDate}}
           file_glob: true
